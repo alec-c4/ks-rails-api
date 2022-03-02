@@ -97,8 +97,6 @@ def apply_app_changes
   end
 
   gsub_file "config/environments/production.rb", /STDOUT/, "$stdout"
-  gsub_file "config/puma.rb", /fetch("RAILS_MAX_THREADS") { 5 }/, 'fetch("RAILS_MAX_THREADS", 5)'
-  gsub_file "config/puma.rb", /fetch("PORT") { 3000 }/, 'fetch("PORT", 3000)'
 
   run "cp config/environments/production.rb config/environments/staging.rb"
 
