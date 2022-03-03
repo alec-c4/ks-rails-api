@@ -113,9 +113,13 @@ def apply_app_changes
 
   # setup application logic
 
+  copy_file "app/controllers/system_controller.rb", force: true
+  copy_file "bin/dev", force: true
+  run "chmod +x bin/dev"
   directory "app/interactions", force: true
   directory "app/mailers", force: true
   copy_file "config/puma.rb", force: true
+  copy_file "config/routes.rb", force: true
   copy_file "config/initializers/active_interaction.rb", force: true
 
   # setup specs
