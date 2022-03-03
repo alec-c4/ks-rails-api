@@ -47,8 +47,9 @@ def apply_app_changes
 
   generate "hypershield:install"
 
-  inject_into_file "config/application.rb", after: /config\.generators\.system_tests = nil\n/ do
+  inject_into_file "config/application.rb", after: /config\.api_only = true\n/ do
     <<-'RUBY'
+    
   # use config file
   config.settings = config_for(:settings)
     RUBY
