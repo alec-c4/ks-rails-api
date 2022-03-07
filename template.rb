@@ -43,10 +43,6 @@ def apply_app_changes
 
   copy_file "config/settings.yml", force: true
 
-  generate "strong_migrations:install"
-
-  generate "hypershield:install"
-
   inject_into_file "config/application.rb", after: /config\.api_only = true\n/ do
     <<-'RUBY'
     
@@ -128,8 +124,10 @@ def apply_app_changes
   directory "spec", force: true
   copy_file ".rspec", force: true
 
-  # setup hypershield gem
+  # setup db related gems
   generate "hypershield:install"
+  generate "annotate:install"
+  generate "strong_migrations:install"
 
   # run linters
   run "i18n-tasks normalize"
@@ -143,7 +141,7 @@ def show_post_install_message
   App successfully created!\n
 
   Next steps:
-  1 - add creadentials as described in README.md
+  1 - add credentials as described in README.md
   2 - configure database connections
   3 - configure application options in config/settings.yml
   4 - run following command \n
