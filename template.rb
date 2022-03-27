@@ -67,6 +67,12 @@ def apply_app_changes
       expires_in: 6.hours.to_i, # in case of network errors when sending a cache invalidation
       failover: false # avoids more cache consistency issues
     }    
+
+    config.action_mailer.default_url_options = {
+      host: URI.parse(Rails.configuration.settings.base_url).host,
+      port: URI.parse(Rails.configuration.settings.base_url).port,
+      protocol: URI.parse(Rails.configuration.settings.base_url).scheme
+    }
     RUBY
   end
 
@@ -79,6 +85,12 @@ def apply_app_changes
       Bullet.bullet_logger = true
       Bullet.raise = true # raise an error if n+1 query occurs
     end
+
+    config.action_mailer.default_url_options = {
+      host: URI.parse(Rails.configuration.settings.base_url).host,
+      port: URI.parse(Rails.configuration.settings.base_url).port,
+      protocol: URI.parse(Rails.configuration.settings.base_url).scheme
+    }
     RUBY
   end
 
@@ -90,6 +102,11 @@ def apply_app_changes
       expires_in: 6.hours.to_i, # in case of network errors when sending a cache invalidation
       failover: false # avoids more cache consistency issues
     }        
+
+    config.action_mailer.default_url_options = {
+      host: URI.parse(Rails.configuration.settings.base_url).host,
+      protocol: URI.parse(Rails.configuration.settings.base_url).scheme
+    }
     RUBY
   end
 
@@ -99,9 +116,9 @@ def apply_app_changes
 
   # setup migrations
 
-  generate "migration EnableUuidPsqlExtension"
-  uuid_migration_file = (Dir["db/migrate/*_enable_uuid_psql_extension.rb"]).first
-  copy_file "migrations/uuid.rb", uuid_migration_file, force: true
+  # generate "migration EnableUuidPsqlExtension"
+  # uuid_migration_file = (Dir["db/migrate/*_enable_uuid_psql_extension.rb"]).first
+  # copy_file "migrations/uuid.rb", uuid_migration_file, force: true
 
   # setup i18n
   copy_file "config/initializers/i18n.rb", force: true
