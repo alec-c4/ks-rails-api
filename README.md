@@ -53,7 +53,7 @@ bin/rails db:encryption:init
 - .gitignore file
 - [VSCode](https://code.visualstudio.com/) configuration files
 - postgresql database connector
-- [strong_migrations](https://github.com/ankane/strong_migrations)
+- [online_migrations](https://github.com/fatkodima/online_migrations)
 
 - pre-configured generators
 - I18n tools - [rails-i18n](http://github.com/svenfuchs/rails-i18n) and [i18n-tasks](https://github.com/glebm/i18n-tasks)

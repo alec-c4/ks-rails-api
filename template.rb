@@ -140,11 +140,12 @@ def apply_app_changes
   generate "rspec:install"
   directory "spec", force: true
   copy_file ".rspec", force: true
+  copy_file "lib/tasks/factory_bot.rake", force: true
 
   # setup db related gems
   generate "hypershield:install"
   generate "annotate:install"
-  generate "strong_migrations:install"
+  generate "online_migrations:install"
 
   # run linters
   run "i18n-tasks normalize"
